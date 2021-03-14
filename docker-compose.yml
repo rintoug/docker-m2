@@ -1,0 +1,66 @@
+version: "3.1"
+services:
+  elasticsearch:
+    image: markoshust/magento-elasticsearch:7.7.1-0
+    container_name: es01
+    ports:
+      - "9200:9200"
+      - "9300:9300"
+    environment:
+      - "discovery.type=single-node"
+      - "ES_JAVA_OPTS=-Xms1g -Xmx1g" 
+    networks:
+      - elastic 
+  web:
+    build:
+      context: .docker/apache_php
+    container_name: ${APP_NAME}_php
+    links:
+      - db
+      - phpmyadmin
+    ports:
+      - "8091:80"
+    volumes:
+      - ./app:/var/www/html:cached
+    networks:
+      - elastic    
+
+  db:
+    build:
+      context: .docker/db
+    container_name: ${APP_NAME}_db
+    environment:
+      - MYSQL_ROOT_PASSWORD=test123@123
+      - MYSQL_DATABASE=${MYSQL_DATABASE}
+      - MYSQL_USER=root
+      - MYSQL_PASSWORD=test@123
+      - MYSQL_HOST=db
+    ports:
+      - "3308:3306"
+    volumes:
+      - mydata:/var/lib/mysql
+    networks:
+      - elastic  
+  redis:
+    container_name: ${APP_NAME}_redis
+    image: redis:5.0-alpine   
+    networks:
+      - elastic   
+  phpmyadmin:
+      depends_on:
+        - db
+      image: phpmyadmin/phpmyadmin
+      ports:
+        - "8092:80"
+      environment:
+        MYSQL_USERNAME: root
+        MYSQL_ROOT_PASSWORD: test123@123
+        PMA_HOST: db
+      networks:
+      - elastic   
+
+volumes:
+  mydata:
+networks:
+  elastic:
+    driver: bridge   

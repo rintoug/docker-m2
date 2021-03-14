@@ -1,0 +1,26 @@
+How to create a custom console command (artisan) for Laravel 8?
+
+Laravel's Aritsan(command-line interface) is well known among develoeprs.
+
+Commands are generally saved in the app/Console/Comamnd fodler.
+
+Create and register command
+
+Let's say we are working on an project that imports several products from an third party system.
+
+
+php artisan make:command ImportProducts --command=import:products
+
+This should create a QuizStart class in the /app/console/commands directory with App\Console\Commands namespace.
+
+
+Note : --command is generates a command that we can run in the command line, like below
+
+php artisan import:products
+
+
+
+
+
+
+
