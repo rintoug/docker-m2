@@ -13,3 +13,4 @@ docker-compose exec web php bin/magento setup:di:compile
 docker-compose exec web php bin/magento module:disable Magento_TwoFactorAuth
 docker-compose exec web php bin/magento setup:config:set --page-cache=redis --page-cache-redis-server=magento2_redis --page-cache-redis-db=1
 docker-compose exec web php bin/magento setup:config:set --cache-backend=redis --cache-backend-redis-server=magento2_redis --cache-backend-redis-db=0
+docker-compose exec web php bin/magento cron:install

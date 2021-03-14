@@ -57,7 +57,20 @@ services:
         MYSQL_ROOT_PASSWORD: test123@123
         PMA_HOST: db
       networks:
-      - elastic   
+      - elastic 
+  kibana:
+    container_name: ${APP_NAME}_kibana
+    image: docker.elastic.co/kibana/kibana:7.9.2
+    environment:
+      - ELASTICSEARCH_URL=http://es01:9200
+      - SERVER_HOST="0"
+      - XPACK_SECURITY_ENABLED=false
+    networks:
+      - elastic
+    depends_on:
+      - elasticsearch
+    ports:
+      - 5601:5601      
 
 volumes:
   mydata:
