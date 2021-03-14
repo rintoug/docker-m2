@@ -43,7 +43,7 @@ services:
       - elastic  
   redis:
     container_name: ${APP_NAME}_redis
-    image: redis:5.0-alpine   
+    image: redis:5.0-alpine  
     networks:
       - elastic   
   phpmyadmin:
