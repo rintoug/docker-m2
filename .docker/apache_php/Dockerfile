@@ -12,7 +12,7 @@ RUN apt-get update \
 	libpng-dev \
 	libjpeg-dev \
 	#Added New End
-	nodejs \
+#	nodejs \
 	libfreetype6-dev \
 	libicu-dev \
     libssl-dev \

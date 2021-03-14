@@ -1,17 +1,9 @@
 #!/bin/sh
-set -e
-
-#echo "Hello From container"
-
-#service apache2 restart
-
-#tail -f /dev/null
-cd ../../
 
 curl -O https://p-lux1.pcloud.com/cfZyMhS6sZKVhnHMZBG7J7ZZ97BlG7Z2ZZEe5ZZtxv2pZXzZqFZpZ2pZuFZ1zZ8zZxpZKJZjzZ4pZf5ZOHZP5ZqRurkg7LEvRfKPXTqWzgbJnCwdPy/magento-ce-2.4.1-2020-09-25-04-17-23.tar.gz
-mkdir app
+mkdir src
 
-tar -xvf magento-ce-2.4.1-2020-09-25-04-17-23.tar.gz -C app
+tar -xvf magento-ce-2.4.1-2020-09-25-04-17-23.tar.gz -C src
 
 rm magento-ce-2.4.1-2020-09-25-04-17-23.tar.gz
 

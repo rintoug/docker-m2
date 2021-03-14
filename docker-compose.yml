@@ -21,7 +21,7 @@ services:
     ports:
       - "8091:80"
     volumes:
-      - ./app:/var/www/html:cached
+      - ./src:/var/www/html:cached
     networks:
       - elastic    
 
