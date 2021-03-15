@@ -1,5 +1,6 @@
 #!/bin/sh
 
+# Magento 2.4.1 without sample data
 curl -O https://cdn-125.anonfiles.com/h8qbD2b8t6/0cc47538-1615811183/magento-ce-2.4.1-2020-09-25-04-17-23.tar.gz
 mkdir src
 
