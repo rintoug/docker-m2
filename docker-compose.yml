@@ -1,7 +1,7 @@
 version: "3.1"
 services:
   elasticsearch:
-    image: markoshust/magento-elasticsearch:7.7.1-0
+    image: docker.elastic.co/elasticsearch/elasticsearch:7.11.2
     container_name: es01
     ports:
       - "9200:9200"
@@ -14,7 +14,7 @@ services:
   web:
     build:
       context: .docker/apache_php
-    container_name: ${APP_NAME}_php
+    container_name: ${APP_NAME}_web
     links:
       - db
       - phpmyadmin
@@ -22,6 +22,7 @@ services:
       - "8091:80"
     volumes:
       - ./src:/var/www/html:cached
+      - ./.docker/apache_php/supervisord.conf:/etc/supervisor/conf.d/supervisord.conf
     networks:
       - elastic    
 
@@ -29,6 +30,7 @@ services:
     build:
       context: .docker/db
     container_name: ${APP_NAME}_db
+    command: --default-authentication-plugin=mysql_native_password
     environment:
       - MYSQL_ROOT_PASSWORD=test123@123
       - MYSQL_DATABASE=magento2
@@ -60,7 +62,7 @@ services:
       - elastic 
   kibana:
     container_name: ${APP_NAME}_kibana
-    image: docker.elastic.co/kibana/kibana:7.9.2
+    image: docker.elastic.co/kibana/kibana:7.11.2
     environment:
       - ELASTICSEARCH_URL=http://es01:9200
       - SERVER_HOST="0"

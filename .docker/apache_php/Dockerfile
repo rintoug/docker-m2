@@ -71,3 +71,16 @@ RUN a2enmod rewrite && service apache2 restart
 COPY apache_config.conf /etc/apache2/sites-enabled/000-default.conf
 
 COPY php.ini /usr/local/etc/php/php.ini
+
+RUN apt-get update && apt-get install -y --no-install-recommends --no-install-suggests supervisor
+env APACHE_RUN_USER    www-data
+env APACHE_RUN_GROUP   www-data
+env APACHE_PID_FILE    /var/run/apache2.pid
+env APACHE_RUN_DIR     /var/run/apache2
+env APACHE_LOCK_DIR    /var/lock/apache2
+env APACHE_LOG_DIR     /var/log/apache2
+env LANG               C
+
+WORKDIR /var/www/html
+
+CMD ["/usr/bin/supervisord"]
