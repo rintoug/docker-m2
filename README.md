@@ -1,7 +1,7 @@
 # docker-m2
 A Magento 2.4.1 docker with minimal steps
 
-This docker contains PHP 7.4 + MYSQL 8 + PhpMyadmin + Redis + Elastic Search 7.11 + Kibana 7.11
+This docker contains #### PHP 7.4 + MYSQL 8 + PhpMyadmin + Redis + Elastic Search 7.11 + Kibana 7.11
 
 Note : Tested in Mac Os and Linux
 
