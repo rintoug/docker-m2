@@ -12,4 +12,4 @@ Git clone the repo
 Run ```docker-compose up -d```
 
 #### Step 3
-Run the comamnd ```sh run.sh``` and you should have curl installed in your host machine before run this command
+Run the comamnd ```sh run.sh``` and you should have curl installed in your host machine before running this command
